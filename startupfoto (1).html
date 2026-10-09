@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StartupFoto — Выпускные альбомы нового поколения</title>
+  <meta name="description" content="Современные минималистичные выпускные альбомы для 9–11 классов, начальной школы и ВУЗов. Живые эмоции, журнальная верстка, премиальная печать и AR-фото.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Unbounded:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Unbounded"', 'sans-serif'],
+            serif: ['"Cormorant Garamond"', 'serif'],
+          },
+          colors: {
+            noble: {
+              ivory: '#F9F8F5',
+              linen: '#F2EFE9',
+              sand: '#E7E2D7',
+              border: '#DDD6C9',
+              muted: '#7E786F',
+              bronze: '#A87B51',
+              bronzeHover: '#8F653E',
+              gold: '#C5A072',
+              espresso: '#161514',
+              espressoLight: '#23211F',
+            }
+          },
+          animation: {
+            'float-slow': 'float 6s ease-in-out infinite',
+            'pulse-subtle': 'subtlePulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            subtlePulse: {
+              '0%, 100%': { opacity: '1' },
+              '50%': { opacity: '0.7' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom scrollbar and micro-interactions */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F9F8F5;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D9D2C5;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #A87B51;
+    }
+    .noise-bg {
+      background-image: radial-gradient(rgba(45, 35, 25, 0.035) 1px, transparent 0);
+      background-size: 26px 26px;
+    }
+    .blur-backdrop {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .spread-shadow {
+      box-shadow: 0 24px 48px -12px rgba(22, 21, 20, 0.22), 0 0 0 1px rgba(168, 123, 81, 0.15);
+    }
+    .gold-shimmer {
+      background: linear-gradient(135deg, #A87B51 0%, #C5A072 50%, #94673D 100%);
+    }
+  </style>
+</head>
+<body class="bg-noble-ivory text-noble-espresso font-sans antialiased selection:bg-noble-espresso selection:text-noble-ivory noise-bg">
+
+  <header class="fixed top-0 left-0 right-0 z-50 border-b border-noble-border/70 bg-noble-ivory/90 blur-backdrop transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-noble-espresso text-noble-ivory flex items-center justify-center font-display font-black text-lg tracking-wider border border-noble-bronze/30 group-hover:scale-95 transition-transform duration-200 shadow-sm">
+          S·F
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-bold text-sm tracking-tight text-noble-espresso uppercase flex items-center gap-1.5">
+            StartupFoto
+            <span class="w-1.5 h-1.5 rounded-full bg-noble-bronze animate-pulse"></span>
+          </span>
+          <span class="text-[11px] font-serif italic text-noble-muted tracking-wide">ателье выпускных книг</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-noble-muted">
+        <a href="#portfolio" class="hover:text-noble-espresso transition-colors">Портфолио</a>
+        <a href="#concepts" class="hover:text-noble-espresso transition-colors">Стили съемок</a>
+        <a href="#calculator" class="hover:text-noble-espresso transition-colors">Калькулятор</a>
+        <a href="#process" class="hover:text-noble-espresso transition-colors">Как мы работаем</a>
+        <a href="#faq" class="hover:text-noble-espresso transition-colors">Вопросы</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3">
+        <button onclick="openSampleKitModal()" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-xs font-semibold tracking-wide border border-noble-border hover:border-noble-bronze bg-white/80 hover:bg-white transition-all text-noble-espresso shadow-sm">
+          <i data-lucide="box" class="w-3.5 h-3.5 text-noble-bronze"></i>
+          <span>Образцы в школу</span>
+        </button>
+
+        <button onclick="openBookingModal('Консультация с фотографом')" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide bg-noble-espresso text-noble-ivory hover:bg-noble-espressoLight transition-all border border-noble-bronze/40 shadow-sm">
+          <span>Рассчитать альбом</span>
+          <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-noble-gold"></i>
+        </button>
+
+        <!-- Mobile menu toggle -->
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-noble-espresso hover:bg-noble-linen" aria-label="Меню">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileDrawer" class="hidden md:hidden border-t border-noble-border bg-noble-ivory/98 px-6 py-6 space-y-4">
+      <a href="#portfolio" class="block text-base font-medium text-noble-espresso py-1" onclick="toggleMobileMenu()">Портфолио и примеры</a>
+      <a href="#concepts" class="block text-base font-medium text-noble-espresso py-1" onclick="toggleMobileMenu()">Концепции съемок</a>
+      <a href="#calculator" class="block text-base font-medium text-noble-espresso py-1" onclick="toggleMobileMenu()">Калькулятор стоимости</a>
+      <a href="#process" class="block text-base font-medium text-noble-espresso py-1" onclick="toggleMobileMenu()">Этапы работы</a>
+      <a href="#faq" class="block text-base font-medium text-noble-espresso py-1" onclick="toggleMobileMenu()">Частые вопросы</a>
+      <div class="pt-4 border-t border-noble-border/60 flex flex-col gap-3">
+        <button onclick="openSampleKitModal(); toggleMobileMenu();" class="w-full text-center py-3 rounded-xl border border-noble-border text-sm font-semibold text-noble-espresso bg-white">
+          Заказать чемодан с образцами
+        </button>
+        <button onclick="openBookingModal('Быстрый заказ'); toggleMobileMenu();" class="w-full text-center py-3 rounded-xl bg-noble-espresso text-noble-ivory text-sm font-semibold">
+          Связаться в WhatsApp
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-28 lg:pt-36">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      
+      <!-- Top Tagline -->
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-noble-linen border border-noble-border text-noble-espresso text-xs font-medium">
+          <span class="w-2 h-2 rounded-full bg-noble-bronze"></span>
+          Сезон 2024 / 2025 • Съемки в Москве и Санкт-Петербурге
+        </div>
+        <div class="flex items-center gap-4 text-xs font-medium text-noble-muted">
+          <span class="flex items-center gap-1.5"><i data-lucide="camera" class="w-4 h-4 text-noble-bronze"></i> Журнальный стиль</span>
+          <span class="hidden sm:inline text-noble-sand">•</span>
+          <span class="hidden sm:flex items-center gap-1.5"><i data-lucide="sparkles" class="w-4 h-4 text-noble-bronze"></i> Без неловких поз</span>
+          <span class="text-noble-sand">•</span>
+          <span class="flex items-center gap-1.5"><i data-lucide="video" class="w-4 h-4 text-noble-bronze"></i> Оживающие AR-кадры</span>
+        </div>
+      </div>
+
+      <!-- Main Headline Block -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end mb-14">
+        <div class="lg:col-span-8">
+          <h1 class="font-display text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-noble-espresso leading-[1.12]">
+            Альбомы, которые хочется листать <span class="font-serif italic font-normal text-noble-bronze">даже через 20 лет</span>
+          </h1>
+        </div>
+        <div class="lg:col-span-4 space-y-4">
+          <p class="text-noble-muted text-sm sm:text-base leading-relaxed">
+            Никаких шаблонов из 2000-х и хромакея. Живой лайфстайл, естественный свет, журнальная эстетика и возможность самим выбрать любимые кадры.
+          </p>
+          <div class="flex flex-wrap items-center gap-3">
+            <button onclick="scrollToId('portfolio')" class="px-6 py-3.5 rounded-xl bg-noble-espresso hover:bg-noble-espressoLight text-noble-ivory font-semibold text-xs tracking-wider uppercase transition-all shadow-md flex items-center gap-2">
+              <span>Смотреть альбомы</span>
+              <i data-lucide="arrow-down" class="w-4 h-4 text-noble-gold"></i>
+            </button>
+            <button onclick="openSpreadModal('editorial')" class="px-5 py-3.5 rounded-xl border border-noble-border hover:border-noble-bronze bg-white font-semibold text-xs tracking-wider uppercase transition-all flex items-center gap-2 text-noble-espresso">
+              <i data-lucide="book-open" class="w-4 h-4 text-noble-bronze"></i>
+              <span>Полистать разворот</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Gallery Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+        
+        <!-- Large Hero Card 1 -->
+        <div class="md:col-span-7 group relative rounded-3xl overflow-hidden bg-noble-espresso aspect-[16/11] shadow-2xl transition-transform duration-500 border border-noble-sand">
+          <img 
+            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1400&q=80" 
+            alt="Выпускной класс на улице города" 
+            class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-90"
+            loading="lazy"
+          >
+          <div class="absolute inset-0 bg-gradient-to-t from-noble-espresso/90 via-noble-espresso/25 to-transparent"></div>
+          <div class="absolute top-6 left-6 flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full bg-black/40 blur-backdrop text-noble-ivory text-xs font-medium border border-white/20">
+              Городской лайфстайл
+            </span>
+            <span class="px-3 py-1 rounded-full bg-noble-bronze/80 blur-backdrop text-white text-xs font-serif italic">
+              11 «А» класс • Гимназия №1514
+            </span>
+          </div>
+          <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between">
+            <div>
+              <p class="text-noble-ivory font-display text-xl sm:text-2xl font-bold tracking-tight">Эмоции вместо строгих линеек</p>
+              <p class="text-noble-sand text-xs sm:text-sm mt-1">Свободная прогулка, смех и настоящая дружба выпускников</p>
+            </div>
+            <button onclick="openSpreadModal('lifestyle')" class="w-12 h-12 rounded-2xl bg-noble-ivory text-noble-espresso hover:bg-noble-gold hover:text-white flex items-center justify-center hover:scale-105 transition-all shadow-lg shrink-0" title="Посмотреть разворот">
+              <i data-lucide="eye" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Side 2 Stacked Cards -->
+        <div class="md:col-span-5 flex flex-col gap-4">
+          
+          <!-- Card 2: Minimal Studio -->
+          <div class="group relative rounded-3xl overflow-hidden bg-noble-espresso aspect-[16/8] md:h-1/2 shadow-lg border border-noble-sand">
+            <img 
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=80" 
+              alt="Студийный журнальный портрет выпускницы" 
+              class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 opacity-90"
+              loading="lazy"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-noble-espresso/85 via-noble-espresso/25 to-transparent"></div>
+            <div class="absolute top-4 left-4">
+              <span class="px-2.5 py-1 rounded-full bg-black/40 blur-backdrop text-noble-ivory text-[11px] font-medium border border-white/20">
+                Студийный портрет
+              </span>
+            </div>
+            <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+              <div>
+                <p class="text-noble-ivory font-display text-base font-bold">Журнальный свет и ретушь</p>
+                <p class="text-noble-sand text-xs">Каждый выбирает свой лучший снимок</p>
+              </div>
+              <span class="text-xs text-noble-gold font-serif italic">№ 01</span>
+            </div>
+          </div>
+
+          <!-- Card 3: School natural atmosphere -->
+          <div class="group relative rounded-3xl overflow-hidden bg-noble-espresso aspect-[16/8] md:h-1/2 shadow-lg border border-noble-sand">
+            <img 
+              src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=900&q=80" 
+              alt="Уютная съемка в стенах школы" 
+              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-90"
+              loading="lazy"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-noble-espresso/85 via-noble-espresso/25 to-transparent"></div>
+            <div class="absolute top-4 left-4">
+              <span class="px-2.5 py-1 rounded-full bg-black/40 blur-backdrop text-noble-ivory text-[11px] font-medium border border-white/20">
+                Родные стены школы
+              </span>
+            </div>
+            <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+              <div>
+                <p class="text-noble-ivory font-display text-base font-bold">Без унылых парт и штор</p>
+                <p class="text-noble-sand text-xs">Уютная школьная эстетика в кабинетах</p>
+              </div>
+              <span class="text-xs text-noble-gold font-serif italic">№ 02</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Key Trust Proof Counters -->
+      <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 p-6 sm:p-8 rounded-3xl bg-noble-linen/70 border border-noble-border shadow-sm">
+        <div class="space-y-1">
+          <div class="font-display font-bold text-2xl sm:text-3xl text-noble-espresso">12 лет</div>
+          <div class="text-xs sm:text-sm text-noble-muted font-medium">Снимаем выпуски с 2012 года</div>
+        </div>
+        <div class="space-y-1">
+          <div class="font-display font-bold text-2xl sm:text-3xl text-noble-espresso">92 000+</div>
+          <div class="text-xs sm:text-sm text-noble-muted font-medium">Напечатанных фотокниг</div>
+        </div>
+        <div class="space-y-1">
+          <div class="font-display font-bold text-2xl sm:text-3xl text-noble-espresso">100%</div>
+          <div class="text-xs sm:text-sm text-noble-muted font-medium">Выбор фото самими учениками</div>
+        </div>
+        <div class="space-y-1">
+          <div class="font-display font-bold text-2xl sm:text-3xl text-noble-espresso flex items-center gap-1.5">
+            4.95 <i data-lucide="star" class="w-5 h-5 text-noble-bronze fill-noble-bronze"></i>
+          </div>
+          <div class="text-xs sm:text-sm text-noble-muted font-medium">Рейтинг на Яндекс и Google</div>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="portfolio" class="py-20 bg-white border-y border-noble-border/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-widest text-noble-bronze">Каталог выпускных альбомов</span>
+            <h2 class="font-display text-2xl sm:text-4xl font-bold text-noble-espresso mt-1">
+              Актуальные серии сезона
+            </h2>
+            <p class="text-noble-muted text-sm mt-2 max-w-xl">
+              Каждый дизайн разработан практикующими арт-директорами. Твердая обложка со soft-touch ламинацией, раскрытие на 180° и шелковистая плотная бумага.
+            </p>
+          </div>
+
+          <!-- Category Filters -->
+          <div class="flex flex-wrap gap-2 p-1.5 rounded-2xl bg-noble-linen border border-noble-border text-xs font-semibold" id="categoryFilterContainer">
+            <button onclick="filterPortfolio('all')" class="cat-btn active-tab px-4 py-2 rounded-xl transition-all bg-white text-noble-espresso shadow-sm" data-cat="all">
+              Все классы
+            </button>
+            <button onclick="filterPortfolio('high')" class="cat-btn px-4 py-2 rounded-xl text-noble-muted hover:text-noble-espresso transition-all" data-cat="high">
+              9–11 классы и ВУЗы
+            </button>
+            <button onclick="filterPortfolio('primary')" class="cat-btn px-4 py-2 rounded-xl text-noble-muted hover:text-noble-espresso transition-all" data-cat="primary">
+              1–4 классы
+            </button>
+            <button onclick="filterPortfolio('kinder')" class="cat-btn px-4 py-2 rounded-xl text-noble-muted hover:text-noble-espresso transition-all" data-cat="kinder">
+              Детский сад
+            </button>
+          </div>
+        </div>
+
+        <!-- Album Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="albumGrid">
+          
+          <!-- Album 1: Modern Minimalist -->
+          <div class="album-card group bg-noble-ivory rounded-3xl p-4 border border-noble-border hover:border-noble-bronze/60 hover:shadow-xl transition-all duration-300" data-category="high">
+            <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-noble-sand mb-5">
+              <img 
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" 
+                alt="Альбом Минимал" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              >
+              <div class="absolute top-3 left-3 bg-noble-espresso/85 blur-backdrop text-noble-ivory text-[11px] font-medium px-2.5 py-1 rounded-full border border-noble-bronze/30">
+                Бестселлер
+              </div>
+              <div class="absolute bottom-3 right-3">
+                <button onclick="openSpreadModal('minimal')" class="px-3.5 py-2 rounded-xl bg-white/95 blur-backdrop text-noble-espresso text-xs font-semibold shadow hover:bg-white flex items-center gap-1.5 transition-colors">
+                  <i data-lucide="book" class="w-3.5 h-3.5 text-noble-bronze"></i>
+                  <span>Смотреть развороты</span>
+                </button>
+              </div>
+            </div>
+            <div class="px-2">
+              <div class="flex items-center justify-between text-xs text-noble-muted font-medium mb-1">
+                <span>9–11 классы • 20×30 см</span>
+                <span class="text-noble-bronze font-semibold flex items-center gap-1">
+                  <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> До 10 разворотов
+                </span>
+              </div>
+              <h3 class="font-display font-bold text-lg text-noble-espresso group-hover:text-noble-bronze transition-colors">
+                Коллекция «Чистый лист»
+              </h3>
+              <p class="text-noble-muted text-xs mt-1.5 line-clamp-2">
+                Скандинавская эстетика, много воздуха, типографика без кричащих рамок. Портрет каждого ученика во весь разворот.
+              </p>
+              <div class="mt-4 pt-4 border-t border-noble-border/70 flex items-center justify-between">
+                <div>
+                  <span class="text-[11px] text-noble-muted block">Стоимость альбома</span>
+                  <span class="font-display font-bold text-base text-noble-espresso">от 3 490 ₽</span>
+                </div>
+                <button onclick="openBookingModal('Альбом Чистый Лист')" class="px-4 py-2 rounded-xl bg-noble-espresso hover:bg-noble-espressoLight text-noble-ivory text-xs font-semibold transition-all">
+                  Выбрать
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Album 2: Editorial Magazine -->
+          <div class="album-card group bg-noble-ivory rounded-3xl p-4 border border-noble-border hover:border-noble-bronze/60 hover:shadow-xl transition-all duration-300" data-category="high">
+            <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-noble-sand mb-5">
+              <img 
+                src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=800&q=80" 
+                alt="Альбом Vogue Журнал" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              >
+              <div class="absolute top-3 left-3 bg-noble-bronze text-white text-[11px] font-serif italic px-2.5 py-1 rounded-full shadow-sm">
+                Серия Vogue
+              </div>
+              <div class="absolute bottom-3 right-3">
+                <button onclick="openSpreadModal('editorial')" class="px-3.5 py-2 rounded-xl bg-white/95 blur-backdrop text-noble-espresso text-xs font-semibold shadow hover:bg-white flex items-center gap-1.5 transition-colors">
+                  <i data-lucide="book" class="w-3.5 h-3.5 text-noble-bronze"></i>
+                  <span>Смотреть развороты</span>
+                </button>
+              </div>
+            </div>
+            <div class="px-2">
+              <div class="flex items-center justify-between text-xs text-noble-muted font-medium mb-1">
+                <span>11 классы и ВУЗы • 23×30 см</span>
+                <span class="text-noble-espresso font-semibold">Журнальная верстка</span>
+              </div>
+              <h3 class="font-display font-bold text-lg text-noble-espresso group-hover:text-noble-bronze transition-colors">
+                Альбом-глянец «Trend»
+              </h3>
+              <p class="text-noble-muted text-xs mt-1.5 line-clamp-2">
+                Стиль независимых модных изданий. Интервью выпускников, цитаты, авторские портреты в студии и на вечерней крыше.
+              </p>
+              <div class="mt-4 pt-4 border-t border-noble-border/70 flex items-center justify-between">
+                <div>
+                  <span class="text-[11px] text-noble-muted block">Стоимость альбома</span>
+                  <span class="font-display font-bold text-base text-noble-espresso">от 3 990 ₽</span>
+                </div>
+                <button onclick="openBookingModal('Альбом Trend')" class="px-4 py-2 rounded-xl bg-noble-espresso hover:bg-noble-espressoLight text-noble-ivory text-xs font-semibold transition-all">
+                  Выбрать
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Album 3: Primary School Kind Book -->
+          <div class="album-card group bg-noble-ivory rounded-3xl p-4 border border-noble-border hover:border-noble-bronze/60 hover:shadow-xl transition-all duration-300" data-category="primary">
+            <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-noble-sand mb-5">
+              <img 
+                src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" 
+                alt="Альбом 1-4 классы" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              >
+              <div class="absolute top-3 left-3 bg-noble-gold text-white text-[11px] font-medium px-2.5 py-1 rounded-full">
+                1–4 класс
+              </div>
+              <div class="absolute bottom-3 right-3">
+                <button onclick="openSpreadModal('primary')" class="px-3.5 py-2 rounded-xl bg-white/95 blur-backdrop text-noble-espresso text-xs font-semibold shadow hover:bg-white flex items-center gap-1.5 transition-colors">
+                  <i data-lucide="book" class="w-3.5 h-3.5 text-noble-bronze"></i>
+                  <span>Смотреть развороты</span>
+                </button>
+              </div>
+            </div>
+            <div class="px-2">
+              <div class="flex items-center justify-between text-xs text-noble-muted font-medium mb-1">
+                <span>Начальная школа • 20×20 см</span>
+                <span class="text-noble-espresso font-semibold">Игровые репортажи</span>
+              </div>
+              <h3 class="font-display font-bold text-lg text-noble-espresso group-hover:text-noble-bronze transition-colors">
+                Книга «Первые открытия»
+              </h3>
+              <p class="text-noble-muted text-xs mt-1.5 line-clamp-2">
+                Искренние детские улыбки на переменах, любимый учитель, анкета с мечтами «кем я хочу стать» и живые групповые снимки.
+              </p>
+              <div class="mt-4 pt-4 border-t border-noble-border/70 flex items-center justify-between">
+                <div>
+                  <span class="text-[11px] text-noble-muted block">Стоимость альбома</span>
+                  <span class="font-display font-bold text-base text-noble-espresso">от 2 990 ₽</span>
+                </div>
+                <button onclick="openBookingModal('Альбом Первые открытия')" class="px-4 py-2 rounded-xl bg-noble-espresso hover:bg-noble-espressoLight text-noble-ivory text-xs font-semibold transition-all">
+                  Выбрать
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Album 4: Kindergarten -->
+          <div class="album-card group bg-noble-ivory rounded-3xl p-4 border border-noble-border hover:border-noble-bronze/60 hover:shadow-xl transition-all duration-300" data-category="kinder">
+            <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-noble-sand mb-5">
+              <img 
+                src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=800&q=80" 
+                alt="Детский сад альбом" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              >
+              <div class="absolute top-3 left-3 bg-stone-700 text-white text-[11px] font-medium px-2.5 py-1 rounded-full">
+                Выпускной в саду
+              </div>
+              <div class="absolute bottom-3 right-3">
+                <button onclick="openSpreadModal('kinder')" class="px-3.5 py-2 rounded-xl bg-white/95 blur-backdrop text-noble-espresso text-xs font-semibold shadow hover:bg-white flex items-center gap-1.5 transition-colors">
+                  <i data-lucide="book" class="w-3.5 h-3.5 text-noble-bronze"></i>
+                  <span>Смотреть развороты</span>
+                </button>
+              </div>
+            </div>
+            <div class="px-2">
+              <div class="flex items-center justify-between text-xs text-noble-muted font-medium mb-1">
+                <span>Детский сад • Плотный картон</span>
+                <span class="text-noble-espresso font-semibold">Антивандальные листы</span>
+              </div>
+              <h3 class="font-display font-bold text-lg text-noble-espresso group-hover:text-noble-bronze transition-colors">
+                Книга «Детство без фильтров»
+              </h3>
+              <p class="text-noble-muted text-xs mt-1.5 line-clamp-2">
+                Один день в садике: зарядка, игры с конструктором, прогулка и портреты в естественной среде без пластмассовых декораций.
+              </p>
+              <div class="mt-4 pt-4 border-t border-noble-border/70 flex items-center justify-between">
+                <div>
+                  <span class="text-[11px] text-noble-muted block">Стоимость альбома</span>
+                  <span class="font-display font-bold text-base text-noble-espresso">от 2 690 ₽</span>
+                </div>
+                <button onclick="openBookingModal('Альбом Детский сад')" class="px-4 py-2 rounded-xl bg-noble-espresso hover:bg-noble-espressoLight text-noble-ivory text-xs font-semibold transition-all">
+                  Выбрать
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Album 5: Monolith Dark Edition -->
+          <div class="album-card group bg-noble-ivory rounded-3xl p-4 border border-noble-border hover:border-noble-bronze/60 hover:shadow-xl transition-all duration-300" data-category="high">
+            <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-noble-sand mb-5">
+              <img 
+                src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80" 
+                alt="Темный минимал альбом" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              >
+              <div class="absolute top-3 left-3 bg-noble-espresso text-noble-gold text-[11px] font-semibold px-2.5 py-1 rounded-full border border-noble-gold/30">
+                Премиум
+              </div>
+              <div class="absolute bottom-3 right-3">
+                <button onclick="openSpreadModal('minimal')" class="px-3.5 py-2 rounded-xl bg-white/95 blur-backdrop text-noble-espresso text-xs font-semibold shadow hover:bg-white flex items-center gap-1.5 transition-colors">
+                  <i data-lucide="book" class="w-3.5 h-3.5 text-noble-bronze"></i>
+                  <span>Смотреть развороты</span>
+                </button>
+              </div>
+            </div>
+            <div class="px-2">
+              <div class="flex items-center justify-between text-xs text-noble-muted font-medium mb-1">
+                <span>9–11 классы • Тканевый корешок</span>
+                <span class="text-noble-bronze font-semibold">Тиснение фольгой</span>
+              </div>
+              <h3 class="font-display font-bold text-lg text-noble-espresso group-hover:text-noble-bronze transition-colors">
+                Коллекция «Mono Dark»
+              </h3>
+              <p class="text-noble-muted text-xs mt-1.5 line-clamp-2">
+                Глубокий графитовый тон обложки, золотое тиснение года выпуска и кинематографичная ч/б + цветная фотосессия.
+              </p>
+              <div class="mt-4 pt-4 border-t border-noble-border/70 flex items-center justify-between">
+                <div>
+                  <span class="text-[11px] text-noble-muted block">Стоимость альбома</span>
+                  <span class="font-display font-bold text-base text-noble-espresso">от 3 890 ₽</span>
+                </div>
+                <button onclick="openBookingModal('Альбом Mono Dark')" class="px-4 py-2 rounded-xl bg-noble-espresso hover:bg-noble-espressoLight text-noble-ivory text-xs font-semibold transition-all">
+                  Выбрать
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Album 6: City Architecture & Campus -->
+          <div class="album-card group bg-noble-ivory rounded-3xl p-4 border border-noble-border hover:border-noble-bronze/60 hover:shadow-xl transition-all duration-300" data-category="high">
+            <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-noble-sand mb-5">
+              <img 
+                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" 
+                alt="Альбом Университет и колледж" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              >
+              <div class="absolute top-3 left-3 bg-noble-espresso/85 blur-backdrop text-noble-ivory text-[11px] font-medium px-2.5 py-1 rounded-full">
+                ВУЗы и колледжи
+              </div>
+              <div class="absolute bottom-3 right-3">
+                <button onclick="openSpreadModal('lifestyle')" class="px-3.5 py-2 rounded-xl bg-white/95 blur-backdrop text-noble-espresso text-xs font-semibold shadow hover:bg-white flex items-center gap-1.5 transition-colors">
+                  <i data-lucide="book" class="w-3.5 h-3.5 text-noble-bronze"></i>
+                  <span>Смотреть развороты</span>
+                </button>
+              </div>
+            </div>
+            <div class="px-2">
+              <div class="flex items-center justify-between text-xs text-noble-muted font-medium mb-1">
+                <span>Бакалавриат • Магистратура</span>
+                <span class="text-noble-espresso font-semibold">Городские локации</span>
+              </div>
+              <h3 class="font-display font-bold text-lg text-noble-espresso group-hover:text-noble-bronze transition-colors">
+                Фотокнига «Campus Life»
+              </h3>
+              <p class="text-noble-muted text-xs mt-1.5 line-clamp-2">
+                Съемка в любимых кофейнях, на фоне архитектуры города и в университетских аудиториях с непринужденным вайбом.
+              </p>
+              <div class="mt-4 pt-4 border-t border-noble-border/70 flex items-center justify-between">
+                <div>
+                  <span class="text-[11px] text-noble-muted block">Стоимость альбома</span>
+                  <span class="font-display font-bold text-base text-noble-espresso">от 3 690 ₽</span>
+                </div>
+                <button onclick="openBookingModal('Альбом Campus Life')" class="px-4 py-2 rounded-xl bg-noble-espresso hover:bg-noble-espressoLight text-noble-ivory text-xs font-semibold transition-all">
+                  Выбрать
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Class Freedom Banner -->
+        <div class="mt-14 p-6 sm:p-10 rounded-3xl bg-noble-espresso text-noble-ivory flex flex-col md:flex-row items-center justify-between gap-6 border border-noble-bronze/40 shadow-xl">
+          <div class="space-y-2 max-w-2xl">
+            <div class="inline-flex items-center gap-2 text-xs font-bold text-noble-gold uppercase tracking-widest">
+              <i data-lucide="sparkle" class="w-4 h-4 text-noble-gold"></i> Привилегия StartupFoto
+            </div>
+            <h4 class="font-display text-xl sm:text-2xl font-bold">
+              В одном классе можно заказать разные альбомы
+            </h4>
+            <p class="text-noble-sand text-xs sm:text-sm leading-relaxed">
+              Не нужно идти на компромиссы. Часть ребят хочет большую книгу на 10 разворотов, а часть — компактную на 3? Съемка проводится вместе, а формат печати каждый выбирает индивидуально.
+            </p>
+          </div>
+          <button onclick="openBookingModal('Консультация: разные альбомы в классе')" class="shrink-0 px-7 py-4 rounded-2xl bg-noble-ivory text-noble-espresso hover:bg-noble-gold hover:text-white font-semibold text-xs uppercase tracking-wider transition-all">
+            Узнать подробности
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="concepts" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-xs font-semibold uppercase tracking-widest text-noble-bronze">Как мы создаем кадры</span>
+        <h2 class="font-display text-2xl sm:text-4xl font-bold text-noble-espresso mt-1">
+          4 концепции съемочных локаций
+        </h2>
+        <p class="text-noble-muted text-sm mt-2">
+          Мы подбираем локацию и свет под характер вашего класса, чтобы фотографии выглядели стильно и через десяток лет.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Concept 1 -->
+        <div class="bg-noble-linen/60 rounded-3xl p-5 border border-noble-border hover:border-noble-bronze transition-all">
+          <div class="rounded-2xl overflow-hidden aspect-[4/3] mb-4 bg-noble-sand">
+            <img 
+              src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80" 
+              alt="Светлая циклорама" 
+              class="w-full h-full object-cover"
+              loading="lazy"
+            >
+          </div>
+          <span class="text-[11px] font-serif italic text-noble-bronze tracking-wider">Формат 01</span>
+          <h4 class="font-display font-bold text-base text-noble-espresso mt-1">Белая циклорама</h4>
+          <p class="text-noble-muted text-xs mt-1.5 leading-relaxed">
+            Чистый фон, стильные журнальные позы, возможность прыгать, дурачиться и делать глубокие портреты с мягким студийным светом.
+          </p>
+        </div>
+
+        <!-- Concept 2 -->
+        <div class="bg-noble-linen/60 rounded-3xl p-5 border border-noble-border hover:border-noble-bronze transition-all">
+          <div class="rounded-2xl overflow-hidden aspect-[4/3] mb-4 bg-noble-sand">
+            <img 
+              src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=600&q=80" 
+              alt="Университет и школа" 
+              class="w-full h-full object-cover"
+              loading="lazy"
+            >
+          </div>
+          <span class="text-[11px] font-serif italic text-noble-bronze tracking-wider">Формат 02</span>
+          <h4 class="font-display font-bold text-base text-noble-espresso mt-1">Эстетичная школа</h4>
+          <p class="text-noble-muted text-xs mt-1.5 leading-relaxed">
+            Наши фотографы находят красивые ракурсы в коридорах, спортзале, библиотеке и во дворе — без казенного официоза.
+          </p>
+        </div>
+
+        <!-- Concept 3 -->
+        <div class="bg-noble-linen/60 rounded-3xl p-5 border border-noble-border hover:border-noble-bronze transition-all">
+          <div class="rounded-2xl overflow-hidden aspect-[4/3] mb-4 bg-noble-sand">
+            <img 
+              src="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?auto=format&fit=crop&w=600&q=80" 
+              alt="Уличная съемка" 
+              class="w-full h-full object-cover"
+              loading="lazy"
+            >
+          </div>
+          <span class="text-[11px] font-serif italic text-noble-bronze tracking-wider">Формат 03</span>
+          <h4 class="font-display font-bold text-base text-noble-espresso mt-1">Город и парки</h4>
+          <p class="text-noble-muted text-xs mt-1.5 leading-relaxed">
+            Парк Горького, Музеон, Зарядье, уютные улочки центра Москвы или набережные Питера. Динамичные живые фотосессии в движении.
+          </p>
+        </div>
+
+        <!-- Concept 4 -->
+        <div class="bg-noble-linen/60 rounded-3xl p-5 border border-noble-border hover:border-noble-bronze transition-all">
+          <div class="rounded-2xl overflow-hidden aspect-[4/3] mb-4 bg-noble-sand">
+            <img 
+              src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" 
+              alt="Лофт интерьеры" 
+              class="w-full h-full object-cover"
+              loading="lazy"
+            >
+          </div>
+          <span class="text-[11px] font-serif italic text-noble-bronze tracking-wider">Формат 04</span>
+          <h4 class="font-display font-bold text-base text-noble-espresso mt-1">Дизайнерский лофт</h4>
+          <p class="text-noble-muted text-xs mt-1.5 leading-relaxed">
+            Кирпичные стены, кожаные диваны, неоновый свет и стильная неформальная обстановка для выпускников колледжей и 11 классов.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="calculator" class="py-20 bg-noble-espresso text-noble-ivory border-t border-noble-bronze/30">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Left: Explanation -->
+          <div class="lg:col-span-5 space-y-6">
+            <span class="text-xs font-bold uppercase tracking-widest text-noble-gold">Прозрачный расчет</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight">
+              Интерактивный калькулятор выпускного альбома
+            </h2>
+            <p class="text-noble-sand/90 text-sm leading-relaxed">
+              В цену уже включена профессиональная фотосъемка, аренда света, ретушь кожи каждого ученика, цветопроба, премиум печать и доставка в школу.
+            </p>
+
+            <div class="space-y-3 pt-2">
+              <div class="flex items-center gap-3 text-xs text-noble-sand">
+                <i data-lucide="check" class="w-4 h-4 text-noble-gold shrink-0"></i>
+                <span>Каждый ученик сам выбирает портрет в личной галерее</span>
+              </div>
+              <div class="flex items-center gap-3 text-xs text-noble-sand">
+                <i data-lucide="check" class="w-4 h-4 text-noble-gold shrink-0"></i>
+                <span>Учителю и классному руководителю — альбом в подарок</span>
+              </div>
+              <div class="flex items-center gap-3 text-xs text-noble-sand">
+                <i data-lucide="check" class="w-4 h-4 text-noble-gold shrink-0"></i>
+                <span>Договор с фиксацией сроков и стоимости</span>
+              </div>
+            </div>
+
+            <!-- AR Experience Promo Block -->
+            <div class="p-5 rounded-2xl bg-noble-espressoLight border border-noble-bronze/30 flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-noble-bronze/20 text-noble-gold flex items-center justify-center shrink-0">
+                <i data-lucide="smartphone" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h5 class="text-sm font-bold text-noble-ivory">Оживающие AR-видео в книге</h5>
+                <p class="text-xs text-noble-sand/80 mt-1">
+                  Наведите камеру смартфона на фотографию в альбоме — и она оживет в короткий видеоролик со съемочного дня!
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Calculator Card -->
+          <div class="lg:col-span-7 bg-[#1C1B19] p-6 sm:p-10 rounded-3xl border border-noble-bronze/30 shadow-2xl">
+            <div class="space-y-6">
+              
+              <!-- 1. Grade Select -->
+              <div>
+                <label class="block text-xs font-semibold text-noble-sand uppercase tracking-wider mb-2.5">
+                  1. Для кого альбом?
+                </label>
+                <div class="grid grid-cols-3 gap-2.5" id="calcGradeButtons">
+                  <button type="button" onclick="setCalcGrade('high', this)" class="calc-grade-btn active py-2.5 px-3 rounded-xl border border-noble-gold text-xs font-semibold bg-noble-gold text-noble-espresso transition-all text-center">
+                    9–11 класс / ВУЗ
+                  </button>
+                  <button type="button" onclick="setCalcGrade('primary', this)" class="calc-grade-btn py-2.5 px-3 rounded-xl border border-noble-espressoLight text-xs font-semibold text-noble-sand hover:text-white transition-all text-center bg-noble-espresso/60">
+                    1–4 класс
+                  </button>
+                  <button type="button" onclick="setCalcGrade('kinder', this)" class="calc-grade-btn py-2.5 px-3 rounded-xl border border-noble-espressoLight text-xs font-semibold text-noble-sand hover:text-white transition-all text-center bg-noble-espresso/60">
+                    Детский сад
+                  </button>
+                </div>
+              </div>
+
+              <!-- 2. Spreads count -->
+              <div>
+                <div class="flex justify-between items-center mb-2.5">
+                  <label class="text-xs font-semibold text-noble-sand uppercase tracking-wider">
+                    2. Количество разворотов
+                  </label>
+                  <span id="calcSpreadDisplay" class="text-sm font-bold text-noble-ivory">5 разворотов (10 страниц)</span>
+                </div>
+                <input 
+                  type="range" 
+                  min="2" 
+                  max="12" 
+                  value="5" 
+                  id="calcSpreadRange" 
+                  oninput="updateCalc()"
+                  class="w-full h-2 bg-noble-espressoLight rounded-lg appearance-none cursor-pointer accent-noble-gold"
+                >
+                <div class="flex justify-between text-[11px] text-noble-muted mt-1">
+                  <span>2 разворота (минимум)</span>
+                  <span>12 разворотов (максимум)</span>
+                </div>
+              </div>
+
+              <!-- 3. Quantity of Albums -->
+              <div>
+                <div class="flex justify-between items-center mb-2.5">
+                  <label class="text-xs font-semibold text-noble-sand uppercase tracking-wider">
+                    3. Тираж на класс
+                  </label>
+                  <span id="calcCopiesDisplay" class="text-sm font-bold text-noble-ivory">24 экземпляра</span>
+                </div>
+                <input 
+                  type="range" 
+                  min="10" 
+                  max="60" 
+                  value="24" 
+                  id="calcCopiesRange" 
+                  oninput="updateCalc()"
+                  class="w-full h-2 bg-noble-espressoLight rounded-lg appearance-none cursor-pointer accent-noble-gold"
+                >
+                <div class="flex justify-between text-[11px] text-noble-muted mt-1">
+                  <span>10 альбомов</span>
+                  <span>30</span>
+                  <span>60 альбомов</span>
+                </div>
+              </div>
+
+              <!-- 4. Add-ons toggles -->
+              <div class="pt-2 border-t border-noble-border/20 space-y-3">
+                <label class="flex items-center justify-between p-3.5 rounded-xl bg-noble-espressoLight/80 border border-noble-border/20 cursor-pointer hover:border-noble-bronze/50 transition-colors">
+                  <div class="flex items-center gap-3">
+                    <input type="checkbox" id="calcArOpt" onchange="updateCalc()" class="w-4 h-4 rounded text-noble-bronze focus:ring-noble-gold bg-noble-espresso border-noble-border">
+                    <div>
+                      <span class="text-xs font-semibold text-noble-ivory block">Оживающие фото (AR)</span>
+                      <span class="text-[11px] text-noble-sand">Видеоролик при наведении камеры телефона</span>
+                    </div>
+                  </div>
+                  <span class="text-xs font-bold text-noble-gold">+ 350 ₽/шт</span>
+                </label>
+
+                <label class="flex items-center justify-between p-3.5 rounded-xl bg-noble-espressoLight/80 border border-noble-border/20 cursor-pointer hover:border-noble-bronze/50 transition-colors">
+                  <div class="flex items-center gap-3">
+                    <input type="checkbox" id="calcShootingOpt" onchange="updateCalc()" class="w-4 h-4 rounded text-noble-bronze focus:ring-noble-gold bg-noble-espresso border-noble-border">
+                    <div>
+                      <span class="text-xs font-semibold text-noble-ivory block">Дополнительный 2-й съемочный день</span>
+                      <span class="text-[11px] text-noble-sand">Например, студия + прогулка по городу</span>
+                    </div>
+                  </div>
+                  <span class="text-xs font-bold text-noble-gold">+ 400 ₽/шт</span>
+                </label>
+              </div>
+
+              <!-- Result summary -->
+              <div class="pt-4 border-t border-noble-border/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <span class="text-xs text-noble-sand uppercase tracking-wider block">Стоимость одного альбома</span>
+                  <div class="flex items-baseline gap-2">
+                    <span id="calcPricePerBook" class="font-display font-extrabold text-3xl sm:text-4xl text-noble-ivory">3 650 ₽</span>
+                    <span class="text-xs text-noble-muted line-through" id="calcOldPrice">4 200 ₽</span>
+                  </div>
+                  <span class="text-[11px] text-noble-gold font-medium" id="calcTotalSummary">Общая сумма за 24 шт: 87 600 ₽</span>
+                </div>
+
+                <button onclick="handleBookingWithCalcData()" class="px-6 py-4 rounded-2xl bg-noble-gold hover:bg-noble-bronze text-noble-espresso hover:text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg">
+                  <span>Зафиксировать цену</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="process" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-semibold uppercase tracking-widest text-noble-bronze">Без нервов и задержек</span>
+        <h2 class="font-display text-2xl sm:text-4xl font-bold text-noble-espresso mt-1">
+          Как создается ваш альбом
+        </h2>
+        <p class="text-noble-muted text-sm mt-2">
+          Мы полностью берем координацию на себя: от помощи в подборе одежды до согласования макета с каждым родителем.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Step 1 -->
+        <div class="relative p-6 rounded-3xl bg-white border border-noble-border flex flex-col justify-between shadow-sm">
+          <div class="space-y-3">
+            <span class="font-serif italic font-normal text-3xl text-noble-sand">01</span>
+            <h4 class="font-display font-bold text-lg text-noble-espresso">Выбор стиля и даты</h4>
+            <p class="text-noble-muted text-xs leading-relaxed">
+              Бесплатно привозим чемоданчик с готовыми книгами в школу или отправляем курьером. Фиксируем дату в договоре.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-noble-sand/50 flex items-center text-xs font-semibold text-noble-muted">
+            <i data-lucide="calendar" class="w-4 h-4 mr-1.5 text-noble-bronze"></i> Срок: 1 день
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative p-6 rounded-3xl bg-white border border-noble-border flex flex-col justify-between shadow-sm">
+          <div class="space-y-3">
+            <span class="font-serif italic font-normal text-3xl text-noble-sand">02</span>
+            <h4 class="font-display font-bold text-lg text-noble-espresso">Живая фотосессия</h4>
+            <p class="text-noble-muted text-xs leading-relaxed">
+              Фотограф раскрепощает класс, включает музыку и помогает каждому почувствовать себя свободно перед объективом.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-noble-sand/50 flex items-center text-xs font-semibold text-noble-muted">
+            <i data-lucide="camera" class="w-4 h-4 mr-1.5 text-noble-bronze"></i> Съемка: 3–4 часа
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative p-6 rounded-3xl bg-white border border-noble-border flex flex-col justify-between shadow-sm">
+          <div class="space-y-3">
+            <span class="font-serif italic font-normal text-3xl text-noble-sand">03</span>
+            <h4 class="font-display font-bold text-lg text-noble-espresso">Выбор и ретушь</h4>
+            <p class="text-noble-muted text-xs leading-relaxed">
+              Каждый выпускник получает доступ в онлайн-галерею, где сам выбирает удачные кадры. Деликатная естественная ретушь кожи.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-noble-sand/50 flex items-center text-xs font-semibold text-noble-muted">
+            <i data-lucide="sparkles" class="w-4 h-4 mr-1.5 text-noble-bronze"></i> Срок: 7–10 дней
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="relative p-6 rounded-3xl bg-white border border-noble-border flex flex-col justify-between shadow-sm">
+          <div class="space-y-3">
+            <span class="font-serif italic font-normal text-3xl text-noble-sand">04</span>
+            <h4 class="font-display font-bold text-lg text-noble-espresso">Печать и вручение</h4>
+            <p class="text-noble-muted text-xs leading-relaxed">
+              Печатаем на японском оборудовании Noritsu с плотными страницами и доставляем аккуратно упакованную партию прямо в руки.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-noble-sand/50 flex items-center text-xs font-semibold text-noble-muted">
+            <i data-lucide="package-check" class="w-4 h-4 mr-1.5 text-noble-bronze"></i> Срок: до 14 дней
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <div class="rounded-3xl bg-noble-linen/70 p-8 sm:p-12 border border-noble-border flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div class="space-y-3 max-w-xl">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-noble-border text-noble-espresso text-xs font-medium">
+            <i data-lucide="box" class="w-3.5 h-3.5 text-noble-bronze"></i> Бесплатно для родительских комитетов
+          </div>
+          <h3 class="font-display text-2xl sm:text-3xl font-bold text-noble-espresso">
+            Хотите потрогать книги перед заказом?
+          </h3>
+          <p class="text-noble-muted text-xs sm:text-sm">
+            Мы бесплатно отправим курьером наш стильный бокс с 5 реальными альбомами разных форматов, образцами бумаги и палитрой тканей на родительское собрание.
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+          <button onclick="openSampleKitModal()" class="px-7 py-4 rounded-2xl bg-noble-espresso hover:bg-noble-espressoLight text-noble-ivory font-semibold text-xs tracking-wider uppercase transition-all shadow-md">
+            Заказать демо-бокс в школу
+          </button>
+          <a href="https://wa.me/79778180827" target="_blank" class="px-6 py-4 rounded-2xl bg-white hover:bg-noble-ivory border border-noble-border font-semibold text-xs tracking-wider uppercase transition-all text-noble-espresso text-center flex items-center justify-center gap-2">
+            <i data-lucide="message-circle" class="w-4 h-4 text-noble-bronze"></i>
+            <span>Написать в WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="py-20 bg-white border-t border-noble-border/80">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-14">
+          <span class="text-xs font-semibold uppercase tracking-widest text-noble-bronze">Ответы на популярные вопросы</span>
+          <h2 class="font-display text-2xl sm:text-4xl font-bold text-noble-espresso mt-1">
+            Часто задаваемые вопросы
+          </h2>
+          <p class="text-noble-muted text-sm mt-2">
+            Все нюансы организации, предоплаты, болезней учеников и утверждения фото
+          </p>
+        </div>
+
+        <div class="space-y-4" id="faqAccordion">
+          
+          <!-- Q1 -->
+          <div class="border border-noble-border rounded-2xl p-5 bg-noble-ivory transition-all">
+            <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between text-left font-display font-bold text-base text-noble-espresso">
+              <span>Что делать, если кто-то из учеников заболел в день съемки?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-noble-bronze transition-transform duration-300 shrink-0 ml-4"></i>
+            </button>
+            <div class="faq-content hidden pt-3 text-noble-muted text-xs sm:text-sm leading-relaxed border-t border-noble-sand/60 mt-3">
+              Мы бесплатно организуем досъемку в нашей уютной студии либо во время второго визита фотографа. Ни один выпускник не останется без индивидуального портрета.
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="border border-noble-border rounded-2xl p-5 bg-noble-ivory transition-all">
+            <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between text-left font-display font-bold text-base text-noble-espresso">
+              <span>Кто выбирает фотографии в альбом — фотограф или мы?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-noble-bronze transition-transform duration-300 shrink-0 ml-4"></i>
+            </button>
+            <div class="faq-content hidden pt-3 text-noble-muted text-xs sm:text-sm leading-relaxed border-t border-noble-sand/60 mt-3">
+              Только вы! Каждому ученику и родителю отправляется ссылка на персональный онлайн-кабинет, где вы ставите «сердечки» на понравившихся дублях для своего разворота.
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="border border-noble-border rounded-2xl p-5 bg-noble-ivory transition-all">
+            <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between text-left font-display font-bold text-base text-noble-espresso">
+              <span>Каковы условия оплаты и заключается ли официальный договор?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-noble-bronze transition-transform duration-300 shrink-0 ml-4"></i>
+            </button>
+            <div class="faq-content hidden pt-3 text-noble-muted text-xs sm:text-sm leading-relaxed border-t border-noble-sand/60 mt-3">
+              Мы работаем строго по официальному договору с фиксированной ценой и сроками сдачи. Предоплата составляет 50% в день съемки, а оставшиеся 50% — только после полной проверки и согласования электронного макета перед отправкой в типографию.
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="border border-noble-border rounded-2xl p-5 bg-noble-ivory transition-all">
+            <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between text-left font-display font-bold text-base text-noble-espresso">
+              <span>Как работает оживающее фото (AR)?</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-noble-bronze transition-transform duration-300 shrink-0 ml-4"></i>
+            </button>
+            <div class="faq-content hidden pt-3 text-noble-muted text-xs sm:text-sm leading-relaxed border-t border-noble-sand/60 mt-3">
+              Во время съемки видеограф записывает живые фрагменты смеха, пожеланий и эмоций. Специальный QR-код на развороте позволяет открыть камеру и увидеть, как статичная фотография мгновенно превращается в трогательное видео со звуком.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="py-20 bg-noble-espresso text-noble-ivory relative overflow-hidden border-t border-noble-bronze/30">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-noble-espressoLight text-noble-gold border border-noble-bronze/30 text-xs font-medium mb-6">
+          <span class="w-2 h-2 rounded-full bg-noble-gold animate-pulse"></span>
+          Бронь дат на весну и выпускные 2025
+        </span>
+        <h2 class="font-display text-3xl sm:text-5xl font-bold tracking-tight max-w-3xl mx-auto">
+          Создадим историю вашего выпуска <span class="font-serif italic font-normal text-noble-gold">красиво и без стресса</span>
+        </h2>
+        <p class="text-noble-sand text-sm sm:text-base mt-4 max-w-xl mx-auto">
+          Оставьте заявку — наш ведущий фотограф свяжется с вами, пришлет персональную подборку локаций и забронирует лучшую дату.
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <button onclick="openBookingModal('Финальный CTA')" class="px-8 py-4 rounded-2xl bg-noble-gold hover:bg-noble-bronze text-noble-espresso hover:text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xl">
+            Забронировать дату съемки
+          </button>
+          <a href="tel:+79778180827" class="px-6 py-4 rounded-2xl border border-noble-bronze/40 hover:border-noble-gold bg-noble-espressoLight/80 font-medium text-xs tracking-wider text-noble-sand transition-all flex items-center gap-2">
+            <i data-lucide="phone" class="w-4 h-4 text-noble-gold"></i>
+            <span>+7 (977) 818-08-27</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-noble-ivory border-t border-noble-border py-12 text-noble-muted text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-noble-espresso text-noble-gold flex items-center justify-center font-display font-bold text-sm border border-noble-bronze/30">
+          S
+        </div>
+        <div>
+          <p class="font-display font-bold text-noble-espresso">StartupFoto.ru</p>
+          <p class="text-[11px] text-noble-muted font-serif italic">Школьная и выпускная фотография премиум-класса</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-6 text-noble-muted font-medium">
+        <a href="#portfolio" class="hover:text-noble-espresso transition-colors">Портфолио</a>
+        <a href="#calculator" class="hover:text-noble-espresso transition-colors">Калькулятор</a>
+        <a href="#concepts" class="hover:text-noble-espresso transition-colors">Локации</a>
+        <a href="#faq" class="hover:text-noble-espresso transition-colors">FAQ</a>
+        <a href="https://wa.me/79778180827" target="_blank" class="hover:text-noble-espresso text-noble-bronze font-semibold">WhatsApp</a>
+      </div>
+
+      <p class="text-noble-muted text-[11px]">
+        © 2012–2026 StartupFoto. Все права защищены.
+      </p>
+    </div>
+  </footer>
+
+  <div id="spreadModal" class="fixed inset-0 z-50 bg-black/80 blur-backdrop hidden items-center justify-center p-4">
+    <div class="relative w-full max-w-5xl bg-noble-espresso text-noble-ivory rounded-3xl overflow-hidden border border-noble-bronze/40 shadow-2xl p-6 sm:p-8">
+      
+      <!-- Close Button -->
+      <button onclick="closeSpreadModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-noble-espressoLight hover:bg-noble-espresso text-noble-sand flex items-center justify-center transition-colors border border-noble-border/20">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="mb-6 flex flex-wrap items-center justify-between gap-2 pr-12">
+        <div>
+          <span class="text-xs font-semibold text-noble-gold uppercase tracking-widest" id="spreadCategoryBadge">Разворот фотокниги</span>
+          <h3 class="font-display font-bold text-xl sm:text-2xl mt-0.5" id="spreadTitle">Просмотр фотокниги в развороте</h3>
+        </div>
+        <div class="text-xs text-noble-sand">
+          Разворот <span id="currentSpreadNum" class="text-noble-gold font-bold">1</span> из 3
+        </div>
+      </div>
+
+      <!-- Spread Book Viewer -->
+      <div class="relative bg-[#11100F] rounded-2xl p-3 sm:p-6 border border-noble-bronze/30">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4 aspect-[16/10] sm:aspect-[16/9] relative overflow-hidden rounded-xl spread-shadow bg-noble-espresso">
+          
+          <!-- Left Page -->
+          <div class="relative overflow-hidden bg-noble-espressoLight flex items-center justify-center border-r border-noble-border/20">
+            <img 
+              id="spreadLeftImg" 
+              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80" 
+              alt="Левая страница разворота" 
+              class="w-full h-full object-cover"
+            >
+            <div class="absolute bottom-3 left-3 bg-black/60 blur-backdrop text-[11px] px-2.5 py-1 rounded text-noble-sand font-mono border border-white/10">
+              Стр. <span id="pageLeftNum">02</span>
+            </div>
+          </div>
+
+          <!-- Right Page -->
+          <div class="relative overflow-hidden bg-noble-espressoLight flex items-center justify-center">
+            <img 
+              id="spreadRightImg" 
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=80" 
+              alt="Правая страница разворота" 
+              class="w-full h-full object-cover"
+            >
+            <div class="absolute bottom-3 right-3 bg-black/60 blur-backdrop text-[11px] px-2.5 py-1 rounded text-noble-sand font-mono border border-white/10">
+              Стр. <span id="pageRightNum">03</span>
+            </div>
+          </div>
+
+          <!-- Center gutter shadow -->
+          <div class="hidden md:block absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-8 pointer-events-none bg-gradient-to-r from-black/40 via-transparent to-black/40"></div>
+        </div>
+
+        <!-- Flip Controls -->
+        <div class="mt-5 flex items-center justify-between">
+          <button onclick="prevSpread()" class="px-4 py-2 rounded-xl bg-noble-espressoLight hover:bg-noble-espresso text-xs font-semibold flex items-center gap-2 border border-noble-border/20 text-noble-sand">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+            <span>Предыдущий разворот</span>
+          </button>
+          
+          <div class="flex items-center gap-1.5" id="spreadDots">
+            <span class="w-2.5 h-2.5 rounded-full bg-noble-gold"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-noble-espressoLight"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-noble-espressoLight"></span>
+          </div>
+
+          <button onclick="nextSpread()" class="px-4 py-2 rounded-xl bg-noble-espressoLight hover:bg-noble-espresso text-xs font-semibold flex items-center gap-2 border border-noble-border/20 text-noble-sand">
+            <span>Следующий разворот</span>
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="mt-5 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-2 text-xs text-noble-sand">
+          <i data-lucide="shield-check" class="w-4 h-4 text-noble-gold"></i>
+          <span>Технология «Бабочка»: книга раскрывается ровно на 180 градусов</span>
+        </div>
+        <button onclick="closeSpreadModal(); openBookingModal('Заказ после просмотра разворота');" class="px-6 py-2.5 rounded-xl bg-noble-gold hover:bg-noble-bronze text-noble-espresso hover:text-white font-bold text-xs uppercase tracking-wider transition-colors">
+          Хочу такой альбом
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Booking Form Modal -->
+  <div id="bookingModal" class="fixed inset-0 z-50 bg-black/80 blur-backdrop hidden items-center justify-center p-4">
+    <div class="relative w-full max-w-lg bg-noble-ivory rounded-3xl p-6 sm:p-8 shadow-2xl border border-noble-border">
+      <button onclick="closeBookingModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-noble-linen hover:bg-noble-sand text-noble-espresso flex items-center justify-center">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="mb-5">
+        <span class="text-xs font-bold text-noble-bronze uppercase tracking-widest">Персональный расчет</span>
+        <h3 class="font-display font-bold text-2xl text-noble-espresso mt-1" id="bookingModalTitle">Забронировать альбом</h3>
+        <p class="text-noble-muted text-xs mt-1">Оставьте контакт — наш арт-директор ответит в WhatsApp или по телефону в течение 15 минут.</p>
+      </div>
+
+      <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-noble-espresso mb-1">Ваше имя</label>
+          <input type="text" required placeholder="Например, Анна (родком / выпускник)" class="w-full px-4 py-3 rounded-xl border border-noble-border bg-white focus:outline-none focus:ring-2 focus:ring-noble-bronze text-sm">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-noble-espresso mb-1">Телефон / WhatsApp</label>
+          <input type="tel" required placeholder="+7 (999) 000-00-00" class="w-full px-4 py-3 rounded-xl border border-noble-border bg-white focus:outline-none focus:ring-2 focus:ring-noble-bronze text-sm">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-noble-espresso mb-1">Класс / Группа</label>
+            <input type="text" placeholder="11 «Б» класс" class="w-full px-4 py-3 rounded-xl border border-noble-border bg-white focus:outline-none focus:ring-2 focus:ring-noble-bronze text-sm">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-noble-espresso mb-1">Город</label>
+            <input type="text" placeholder="Москва / СПб" class="w-full px-4 py-3 rounded-xl border border-noble-border bg-white focus:outline-none focus:ring-2 focus:ring-noble-bronze text-sm">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-noble-espresso mb-1">Комментарий или пожелания</label>
+          <textarea rows="2" placeholder="Хотим съемку в студии и на улице..." class="w-full px-4 py-2.5 rounded-xl border border-noble-border bg-white focus:outline-none focus:ring-2 focus:ring-noble-bronze text-sm"></textarea>
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" class="w-full py-3.5 rounded-xl bg-noble-espresso hover:bg-noble-espressoLight text-noble-ivory font-bold text-xs uppercase tracking-wider transition-all shadow-md">
+            Отправить заявку
+          </button>
+          <p class="text-[10px] text-noble-muted text-center mt-2">
+            Нажимая кнопку, вы соглашаетесь на обработку персональных данных.
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Sample Box Modal -->
+  <div id="sampleModal" class="fixed inset-0 z-50 bg-black/80 blur-backdrop hidden items-center justify-center p-4">
+    <div class="relative w-full max-w-lg bg-noble-ivory rounded-3xl p-6 sm:p-8 shadow-2xl border border-noble-border">
+      <button onclick="closeSampleKitModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-noble-linen hover:bg-noble-sand text-noble-espresso flex items-center justify-center">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="mb-5">
+        <span class="text-xs font-bold text-noble-bronze uppercase tracking-widest">Бесплатный чемоданчик</span>
+        <h3 class="font-display font-bold text-2xl text-noble-espresso mt-1">Доставка образцов в школу</h3>
+        <p class="text-noble-muted text-xs mt-1">Привезем коробку с образцами фотокниг на ваше родительское собрание или домой представителю родкома.</p>
+      </div>
+
+      <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-noble-espresso mb-1">Имя получателя</label>
+          <input type="text" required placeholder="Елена Сергеевна" class="w-full px-4 py-3 rounded-xl border border-noble-border bg-white focus:outline-none focus:ring-2 focus:ring-noble-bronze text-sm">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-noble-espresso mb-1">Контактный телефон</label>
+          <input type="tel" required placeholder="+7 (999) 000-00-00" class="w-full px-4 py-3 rounded-xl border border-noble-border bg-white focus:outline-none focus:ring-2 focus:ring-noble-bronze text-sm">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-noble-espresso mb-1">Адрес доставки (школа или дом)</label>
+          <input type="text" required placeholder="г. Москва, ул. Ленина, д. 12, школа № 1234" class="w-full px-4 py-3 rounded-xl border border-noble-border bg-white focus:outline-none focus:ring-2 focus:ring-noble-bronze text-sm">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-noble-espresso mb-1">Удобная дата доставки</label>
+          <input type="date" class="w-full px-4 py-3 rounded-xl border border-noble-border bg-white focus:outline-none focus:ring-2 focus:ring-noble-bronze text-sm">
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-noble-espresso hover:bg-noble-espressoLight text-noble-ivory font-bold text-xs uppercase tracking-wider transition-all shadow-md">
+          Заказать доставку образцов
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 bg-noble-espresso text-noble-ivory px-5 py-3.5 rounded-2xl shadow-2xl border border-noble-bronze/40 flex items-center gap-3 translate-y-24 opacity-0 transition-all duration-300">
+    <div class="w-7 h-7 rounded-full bg-noble-gold text-noble-espresso flex items-center justify-center shrink-0">
+      <i data-lucide="check" class="w-4 h-4"></i>
+    </div>
+    <div class="text-xs">
+      <p class="font-bold text-noble-ivory" id="toastTitle">Заявка принята!</p>
+      <p class="text-noble-sand" id="toastMsg">Мы свяжемся с вами в течение 15 минут.</p>
+    </div>
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Navigation and smooth scrolling
+    function scrollToId(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobileDrawer');
+      drawer.classList.toggle('hidden');
+    }
+    document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+
+    // Portfolio Filtering Logic
+    function filterPortfolio(category) {
+      // Toggle button states
+      const buttons = document.querySelectorAll('#categoryFilterContainer .cat-btn');
+      buttons.forEach(btn => {
+        if (btn.getAttribute('data-cat') === category) {
+          btn.classList.add('bg-white', 'text-noble-espresso', 'shadow-sm');
+          btn.classList.remove('text-noble-muted');
+        } else {
+          btn.classList.remove('bg-white', 'text-noble-espresso', 'shadow-sm');
+          btn.classList.add('text-noble-muted');
+        }
+      });
+
+      // Filter album cards
+      const cards = document.querySelectorAll('#albumGrid .album-card');
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-category');
+        if (category === 'all' || cardCat === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Interactive Calculator Logic
+    let currentCalcGrade = 'high';
+    const gradeBasePrices = {
+      high: 3100,
+      primary: 2700,
+      kinder: 2400
+    };
+
+    function setCalcGrade(grade, btn) {
+      currentCalcGrade = grade;
+      document.querySelectorAll('.calc-grade-btn').forEach(b => {
+        b.classList.remove('border-noble-gold', 'bg-noble-gold', 'text-noble-espresso');
+        b.classList.add('border-noble-espressoLight', 'text-noble-sand', 'bg-noble-espresso/60');
+      });
+      btn.classList.add('border-noble-gold', 'bg-noble-gold', 'text-noble-espresso');
+      btn.classList.remove('border-noble-espressoLight', 'text-noble-sand', 'bg-noble-espresso/60');
+      updateCalc();
+    }
+
+    function updateCalc() {
+      const spreadInput = document.getElementById('calcSpreadRange');
+      const copiesInput = document.getElementById('calcCopiesRange');
+      const arCheckbox = document.getElementById('calcArOpt');
+      const shootingCheckbox = document.getElementById('calcShootingOpt');
+
+      const spreads = parseInt(spreadInput.value);
+      const copies = parseInt(copiesInput.value);
+
+      document.getElementById('calcSpreadDisplay').innerText = `${spreads} разворотов (${spreads * 2} страниц)`;
+      document.getElementById('calcCopiesDisplay').innerText = `${copies} экземпляров`;
+
+      let basePrice = gradeBasePrices[currentCalcGrade];
+      // Price increases with spreads
+      let extraSpreads = Math.max(0, spreads - 3) * 220;
+      let arAddon = arCheckbox.checked ? 350 : 0;
+      let shootingAddon = shootingCheckbox.checked ? 400 : 0;
+
+      // Discount based on volume
+      let volumeDiscountFactor = copies >= 30 ? 0.9 : (copies >= 20 ? 0.95 : 1);
+
+      let pricePerBook = Math.round((basePrice + extraSpreads + arAddon + shootingAddon) * volumeDiscountFactor);
+      let oldPrice = Math.round(pricePerBook * 1.15);
+      let totalPrice = pricePerBook * copies;
+
+      document.getElementById('calcPricePerBook').innerText = `${pricePerBook.toLocaleString('ru-RU')} ₽`;
+      document.getElementById('calcOldPrice').innerText = `${oldPrice.toLocaleString('ru-RU')} ₽`;
+      document.getElementById('calcTotalSummary').innerText = `Общая сумма за ${copies} шт: ${totalPrice.toLocaleString('ru-RU')} ₽`;
+    }
+
+    function handleBookingWithCalcData() {
+      const spreads = document.getElementById('calcSpreadRange').value;
+      const copies = document.getElementById('calcCopiesRange').value;
+      openBookingModal(`Расчет: ${spreads} разворотов, ${copies} экз.`);
+    }
+
+    // Spread Flipbook Viewer Modal Data
+    const spreadGalleries = {
+      editorial: [
+        {
+          left: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80',
+          right: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=80',
+          title: 'Коллекция Trend: Вступительный портрет и цитаты'
+        },
+        {
+          left: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80',
+          right: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=80',
+          title: 'Коллекция Trend: Групповые развороты и друзья'
+        },
+        {
+          left: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=900&q=80',
+          right: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80',
+          title: 'Коллекция Trend: Финальный разворот и пожелания'
+        }
+      ],
+      minimal: [
+        {
+          left: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=80',
+          right: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80',
+          title: 'Чистый лист: Индивидуальные портреты'
+        },
+        {
+          left: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80',
+          right: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80',
+          title: 'Чистый лист: Черно-белая эстетика'
+        }
+      ],
+      lifestyle: [
+        {
+          left: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80',
+          right: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80',
+          title: 'Городской лайфстайл: Прогулка по набережной'
+        },
+        {
+          left: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=80',
+          right: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80',
+          title: 'Городской лайфстайл: Кофейня и парки'
+        }
+      ],
+      primary: [
+        {
+          left: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=80',
+          right: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=900&q=80',
+          title: 'Первые открытия: Уроки и творчество'
+        }
+      ],
+      kinder: [
+        {
+          left: 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=900&q=80',
+          right: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80',
+          title: 'Детский сад: Игры и искренняя радость'
+        }
+      ]
+    };
+
+    let activeSpreadGallery = 'editorial';
+    let currentSpreadIndex = 0;
+
+    function openSpreadModal(series = 'editorial') {
+      activeSpreadGallery = spreadGalleries[series] ? series : 'editorial';
+      currentSpreadIndex = 0;
+      updateSpreadView();
+      document.getElementById('spreadModal').classList.remove('hidden');
+      document.getElementById('spreadModal').classList.add('flex');
+    }
+
+    function closeSpreadModal() {
+      document.getElementById('spreadModal').classList.add('hidden');
+      document.getElementById('spreadModal').classList.remove('flex');
+    }
+
+    function updateSpreadView() {
+      const items = spreadGalleries[activeSpreadGallery];
+      const item = items[currentSpreadIndex];
+
+      document.getElementById('spreadLeftImg').src = item.left;
+      document.getElementById('spreadRightImg').src = item.right;
+      document.getElementById('spreadTitle').innerText = item.title;
+      document.getElementById('currentSpreadNum').innerText = currentSpreadIndex + 1;
+      document.getElementById('pageLeftNum').innerText = (currentSpreadIndex * 2 + 2).toString().padStart(2, '0');
+      document.getElementById('pageRightNum').innerText = (currentSpreadIndex * 2 + 3).toString().padStart(2, '0');
+
+      // Update dots
+      const dotsContainer = document.getElementById('spreadDots');
+      dotsContainer.innerHTML = '';
+      items.forEach((_, idx) => {
+        const dot = document.createElement('span');
+        dot.className = idx === currentSpreadIndex ? 'w-2.5 h-2.5 rounded-full bg-noble-gold' : 'w-2.5 h-2.5 rounded-full bg-noble-espressoLight';
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    function nextSpread() {
+      const items = spreadGalleries[activeSpreadGallery];
+      if (currentSpreadIndex < items.length - 1) {
+        currentSpreadIndex++;
+        updateSpreadView();
+      }
+    }
+
+    function prevSpread() {
+      if (currentSpreadIndex > 0) {
+        currentSpreadIndex--;
+        updateSpreadView();
+      }
+    }
+
+    // FAQ Accordion
+    function toggleFaq(button) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('i');
+      const isHidden = content.classList.contains('hidden');
+
+      // Close all others
+      document.querySelectorAll('#faqAccordion .faq-content').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('#faqAccordion i').forEach(ic => ic.classList.remove('rotate-180'));
+
+      if (isHidden) {
+        content.classList.remove('hidden');
+        if (icon) icon.classList.add('rotate-180');
+      }
+    }
+
+    // Booking and Sample Modals
+    function openBookingModal(context = 'Заказ') {
+      document.getElementById('bookingModalTitle').innerText = `Заявка: ${context}`;
+      document.getElementById('bookingModal').classList.remove('hidden');
+      document.getElementById('bookingModal').classList.add('flex');
+    }
+
+    function closeBookingModal() {
+      document.getElementById('bookingModal').classList.add('hidden');
+      document.getElementById('bookingModal').classList.remove('flex');
+    }
+
+    function openSampleKitModal() {
+      document.getElementById('sampleModal').classList.remove('hidden');
+      document.getElementById('sampleModal').classList.add('flex');
+    }
+
+    function closeSampleKitModal() {
+      document.getElementById('sampleModal').classList.add('hidden');
+      document.getElementById('sampleModal').classList.remove('flex');
+    }
+
+    // Feedback Toast
+    function showToast(title, message) {
+      const toast = document.getElementById('toastNotification');
+      document.getElementById('toastTitle').innerText = title;
+      document.getElementById('toastMsg').innerText = message;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-24', 'opacity-0');
+      }, 4000);
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      closeBookingModal();
+      closeSampleKitModal();
+      showToast('Заявка успешно отправлена!', 'Координатор свяжется с вами в течение 15 минут.');
+      e.target.reset();
+    }
+
+    // Keyboard support for modals (Escape key)
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSpreadModal();
+        closeBookingModal();
+        closeSampleKitModal();
+      }
+      if (e.key === 'ArrowRight' && !document.getElementById('spreadModal').classList.contains('hidden')) {
+        nextSpread();
+      }
+      if (e.key === 'ArrowLeft' && !document.getElementById('spreadModal').classList.contains('hidden')) {
+        prevSpread();
+      }
+    });
+
+    // Run initial calc
+    updateCalc();
+  </script>
+</body>
+</html>
